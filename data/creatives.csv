@@ -1,0 +1,5 @@
+platform,creative_name,impressions,frequency,current_ctr,baseline_ctr,current_cpl,baseline_cpl,current_spend,current_conversions,target_cpl
+Meta,Video A,15000,4.5,0.009,0.014,150,105,1500,10,110
+Meta,Video B,12000,2.1,0.010,0.014,140,110,1120,8,110
+Meta,Static A,18000,3.8,0.018,0.019,110,105,1100,10,110
+Meta,Video C,22000,5.2,0.008,0.013,175,110,2100,12,110

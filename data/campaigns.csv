@@ -1,0 +1,5 @@
+platform,campaign_name,current_spend,current_conversions,current_cpl,baseline_cpl,target_cpl
+Google,Brand Search,1200,12,100,95,100
+Google,Enterprise Search,2400,16,150,100,100
+Meta,Lead Gen US,1800,15,120,115,110
+Meta,Enterprise Leads,3000,15,200,130,120
