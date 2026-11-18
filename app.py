@@ -30,20 +30,22 @@ st.set_page_config(
 st.html("""
 <style>
 
-    /* Main page */
     .stApp {
         background:
-            radial-gradient(circle at top left, rgba(74, 108, 247, 0.08), transparent 32%),
+            radial-gradient(
+                circle at top left,
+                rgba(74, 108, 247, 0.07),
+                transparent 30%
+            ),
             #0b0f14;
     }
 
     .block-container {
         max-width: 1180px;
-        padding-top: 2.2rem;
-        padding-bottom: 4rem;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
     }
 
-    /* Hide Streamlit chrome */
     #MainMenu {
         visibility: hidden;
     }
@@ -53,88 +55,96 @@ st.html("""
     }
 
     /* Header */
+
     .product-eyebrow {
-        color: #8c96a5;
-        font-size: 13px;
-        font-weight: 600;
+        color: #7f8a99;
+        font-size: 12px;
+        font-weight: 700;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
 
     .product-title {
         color: #f5f7fa;
-        font-size: 38px;
+        font-size: 36px;
         line-height: 1.1;
-        font-weight: 700;
+        font-weight: 750;
         letter-spacing: -0.03em;
-        margin-bottom: 8px;
+        margin-bottom: 7px;
     }
 
     .product-subtitle {
         color: #8c96a5;
-        font-size: 16px;
-        margin-bottom: 28px;
+        font-size: 15px;
+        margin-bottom: 24px;
     }
 
-    /* Overview cards */
+    /* Overview */
+
     .overview-card {
         background: #11171f;
         border: 1px solid #202a36;
-        border-radius: 14px;
-        padding: 18px 20px;
-        min-height: 102px;
+        border-radius: 13px;
+        padding: 16px 18px;
+        min-height: 90px;
     }
 
     .overview-label {
         color: #7f8a99;
-        font-size: 12px;
-        font-weight: 600;
+        font-size: 11px;
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: .05em;
+        letter-spacing: .06em;
     }
 
     .overview-value {
         color: #f5f7fa;
-        font-size: 28px;
-        font-weight: 700;
-        margin-top: 6px;
+        font-size: 25px;
+        font-weight: 750;
+        margin-top: 4px;
     }
 
     .overview-note {
         color: #66717f;
-        font-size: 12px;
-        margin-top: 2px;
+        font-size: 11px;
+        margin-top: 1px;
     }
 
-    /* Recommendation card */
+    /* Recommendation container */
+
     div[data-testid="stVerticalBlockBorderWrapper"] {
         background: #10161d;
         border: 1px solid #202a36 !important;
-        border-radius: 16px !important;
+        border-radius: 15px !important;
+    }
+
+    div[data-testid="stVerticalBlockBorderWrapper"]
+    > div {
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 
     .rec-header {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        gap: 20px;
+        gap: 18px;
     }
 
     .rec-badges {
         display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 12px;
+        gap: 7px;
+        margin-bottom: 9px;
     }
 
     .badge {
         display: inline-flex;
         align-items: center;
-        padding: 5px 9px;
+        padding: 4px 8px;
         border-radius: 999px;
-        font-size: 11px;
-        font-weight: 700;
+        font-size: 10px;
+        font-weight: 750;
         letter-spacing: .04em;
     }
 
@@ -146,7 +156,7 @@ st.html("""
 
     .urgent {
         background: rgba(248, 81, 73, .12);
-        border: 1px solid rgba(248, 81, 73, .25);
+        border: 1px solid rgba(248, 81, 73, .28);
         color: #ff7b72;
     }
 
@@ -170,121 +180,126 @@ st.html("""
 
     .rec-title {
         color: #f4f7fa;
-        font-size: 23px;
-        font-weight: 700;
+        font-size: 22px;
+        font-weight: 750;
         letter-spacing: -.015em;
-        margin-bottom: 3px;
+        margin-bottom: 2px;
     }
 
     .rec-type {
         color: #7f8a99;
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .priority-score {
         color: #f5f7fa;
-        font-size: 29px;
-        font-weight: 700;
+        font-size: 27px;
+        font-weight: 750;
         text-align: right;
     }
 
     .priority-caption {
         color: #66717f;
-        font-size: 11px;
+        font-size: 9px;
         text-align: right;
         text-transform: uppercase;
-        letter-spacing: .06em;
+        letter-spacing: .08em;
     }
 
     .impact-pill {
         display: inline-block;
-        margin-top: 10px;
-        color: #aab4c0;
+        margin-top: 8px;
+        color: #c2cad4;
         background: #151d26;
         border: 1px solid #263240;
-        padding: 6px 10px;
+        padding: 5px 9px;
         border-radius: 8px;
-        font-size: 12px;
+        font-size: 11px;
     }
 
-    /* Small metrics */
+    /* Compact metrics */
+
     .metric-row {
         display: flex;
-        gap: 10px;
-        margin: 18px 0 18px 0;
+        gap: 8px;
+        margin: 14px 0 14px 0;
     }
 
     .mini-metric {
-        flex: 1;
         background: #0d131a;
         border: 1px solid #1c2631;
-        border-radius: 10px;
-        padding: 10px 12px;
+        border-radius: 8px;
+        padding: 7px 10px;
+        min-width: 115px;
     }
 
     .mini-label {
         color: #66717f;
-        font-size: 10px;
+        font-size: 9px;
         text-transform: uppercase;
-        letter-spacing: .06em;
+        letter-spacing: .07em;
     }
 
     .mini-value {
         color: #dce3eb;
-        font-size: 15px;
-        font-weight: 650;
-        margin-top: 2px;
+        font-size: 14px;
+        font-weight: 700;
+        margin-top: 1px;
     }
 
-    /* Text */
+    /* Recommendation text */
+
     .section-label {
         color: #7f8a99;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: .06em;
+        font-size: 10px;
+        font-weight: 750;
+        letter-spacing: .07em;
         text-transform: uppercase;
-        margin-top: 14px;
-        margin-bottom: 4px;
+        margin-top: 11px;
+        margin-bottom: 2px;
     }
 
     .section-text {
         color: #d6dde5;
-        font-size: 14px;
-        line-height: 1.55;
+        font-size: 13px;
+        line-height: 1.45;
     }
 
     .action-box {
-        background: rgba(74, 108, 247, .08);
+        background: rgba(74, 108, 247, .07);
         border: 1px solid rgba(74, 108, 247, .22);
-        border-radius: 11px;
-        padding: 13px 15px;
-        margin-top: 17px;
-        margin-bottom: 10px;
+        border-radius: 9px;
+        padding: 10px 12px;
+        margin-top: 13px;
+        margin-bottom: 7px;
     }
 
     .action-title {
         color: #8ea5ff;
-        font-size: 11px;
-        font-weight: 700;
+        font-size: 10px;
+        font-weight: 750;
         text-transform: uppercase;
         letter-spacing: .06em;
-        margin-bottom: 4px;
+        margin-bottom: 3px;
     }
 
     .action-text {
         color: #e4e9ef;
-        font-size: 14px;
-        line-height: 1.5;
+        font-size: 13px;
+        line-height: 1.45;
     }
 
     /* Buttons */
+
     .stButton > button {
-        border-radius: 9px;
-        font-weight: 650;
-        min-height: 38px;
+        border-radius: 8px;
+        font-weight: 700;
+        min-height: 36px;
+        font-size: 13px;
     }
 
-    /* Radio filter */
+    /* Filters */
+
     div[role="radiogroup"] {
         gap: 6px;
     }
@@ -292,7 +307,7 @@ st.html("""
     div[role="radiogroup"] label {
         background: #11171f;
         border: 1px solid #202a36;
-        padding: 6px 13px;
+        padding: 5px 11px;
         border-radius: 999px;
     }
 
@@ -345,8 +360,8 @@ def get_explanation(recommendation):
         )
 
         why_it_matters = (
-            f'At the current performance level, this campaign '
-            f'has approximately ${recommendation["excess_spend"]:,.0f} '
+            f'At the current performance level, this campaign has '
+            f'approximately ${recommendation["excess_spend"]:,.0f} '
             f'in estimated excess spend compared with its baseline.'
         )
 
@@ -416,7 +431,7 @@ recommendations = []
 
 
 # --------------------------------------------------
-# CAMPAIGN DETECTION
+# CAMPAIGN RECOMMENDATIONS
 # --------------------------------------------------
 
 for _, row in campaigns.iterrows():
@@ -440,7 +455,7 @@ for _, row in campaigns.iterrows():
 
 
 # --------------------------------------------------
-# CREATIVE DETECTION
+# CREATIVE RECOMMENDATIONS
 # --------------------------------------------------
 
 for _, row in creatives.iterrows():
@@ -478,7 +493,11 @@ recommendations.sort(
 
 st.html("""
 <div class="product-eyebrow">Morning performance scan</div>
-<div class="product-title">Performance Copilot</div>
+
+<div class="product-title">
+    Performance Copilot
+</div>
+
 <div class="product-subtitle">
     Know what needs your attention before opening Google Ads or Meta.
 </div>
@@ -494,17 +513,14 @@ urgent_count = sum(
     if rec["priority"] >= 80
 )
 
-high_count = sum(
-    1 for rec in recommendations
-    if 60 <= rec["priority"] < 80
-)
-
 total_excess_spend = sum(
     rec["excess_spend"]
     for rec in recommendations
 )
 
-approved_count = len(st.session_state.tasks)
+approved_count = len(
+    st.session_state.tasks
+)
 
 
 overview1, overview2, overview3, overview4 = st.columns(4)
@@ -512,36 +528,68 @@ overview1, overview2, overview3, overview4 = st.columns(4)
 with overview1:
     st.html(f"""
     <div class="overview-card">
-        <div class="overview-label">Needs attention</div>
-        <div class="overview-value">{len(recommendations)}</div>
-        <div class="overview-note">Recommendations found</div>
+        <div class="overview-label">
+            Needs attention
+        </div>
+
+        <div class="overview-value">
+            {len(recommendations)}
+        </div>
+
+        <div class="overview-note">
+            Recommendations found
+        </div>
     </div>
     """)
 
 with overview2:
     st.html(f"""
     <div class="overview-card">
-        <div class="overview-label">Urgent</div>
-        <div class="overview-value">{urgent_count}</div>
-        <div class="overview-note">Review first</div>
+        <div class="overview-label">
+            Urgent
+        </div>
+
+        <div class="overview-value">
+            {urgent_count}
+        </div>
+
+        <div class="overview-note">
+            Review first
+        </div>
     </div>
     """)
 
 with overview3:
     st.html(f"""
     <div class="overview-card">
-        <div class="overview-label">Est. excess spend</div>
-        <div class="overview-value">${total_excess_spend:,.0f}</div>
-        <div class="overview-note">Across detected issues</div>
+        <div class="overview-label">
+            Est. excess spend
+        </div>
+
+        <div class="overview-value">
+            ${total_excess_spend:,.0f}
+        </div>
+
+        <div class="overview-note">
+            Across detected issues
+        </div>
     </div>
     """)
 
 with overview4:
     st.html(f"""
     <div class="overview-card">
-        <div class="overview-label">Approved</div>
-        <div class="overview-value">{approved_count}</div>
-        <div class="overview-note">Added to task list</div>
+        <div class="overview-label">
+            Approved
+        </div>
+
+        <div class="overview-value">
+            {approved_count}
+        </div>
+
+        <div class="overview-note">
+            Added to task list
+        </div>
     </div>
     """)
 
@@ -556,31 +604,40 @@ st.write("")
 
 filter_choice = st.radio(
     "Filter recommendations",
-    ["All", "Google", "Meta", "Urgent"],
+    [
+        "All",
+        "Google",
+        "Meta",
+        "Urgent",
+    ],
     horizontal=True,
     label_visibility="collapsed",
 )
 
 
 if filter_choice == "Google":
+
     filtered_recommendations = [
         rec for rec in recommendations
         if rec["platform"] == "Google"
     ]
 
 elif filter_choice == "Meta":
+
     filtered_recommendations = [
         rec for rec in recommendations
         if rec["platform"] == "Meta"
     ]
 
 elif filter_choice == "Urgent":
+
     filtered_recommendations = [
         rec for rec in recommendations
         if rec["priority"] >= 80
     ]
 
 else:
+
     filtered_recommendations = recommendations
 
 
@@ -601,9 +658,11 @@ for recommendation in filtered_recommendations:
         recommendation["priority"]
     )
 
-    what_happened, why_it_matters, recommended_action = (
-        get_explanation(recommendation)
-    )
+    (
+        what_happened,
+        why_it_matters,
+        recommended_action,
+    ) = get_explanation(recommendation)
 
     task_id = (
         f'{recommendation["platform"]}-'
@@ -620,14 +679,19 @@ for recommendation in filtered_recommendations:
 
         st.html(f"""
         <div class="rec-header">
+
             <div>
+
                 <div class="rec-badges">
+
                     <span class="badge {priority_class}">
                         {priority_label.upper()}
                     </span>
+
                     <span class="badge platform-badge">
                         {recommendation["platform"]}
                     </span>
+
                 </div>
 
                 <div class="rec-title">
@@ -642,39 +706,52 @@ for recommendation in filtered_recommendations:
                     ${recommendation["excess_spend"]:,.0f}
                     estimated excess spend
                 </div>
+
             </div>
 
             <div>
+
                 <div class="priority-score">
                     {recommendation["priority"]}
                 </div>
+
                 <div class="priority-caption">
                     Priority score
                 </div>
+
             </div>
+
         </div>
 
         <div class="metric-row">
+
             <div class="mini-metric">
-                <div class="mini-label">Severity</div>
+                <div class="mini-label">
+                    Severity
+                </div>
                 <div class="mini-value">
                     {recommendation["severity"]}
                 </div>
             </div>
 
             <div class="mini-metric">
-                <div class="mini-label">Impact</div>
+                <div class="mini-label">
+                    Impact
+                </div>
                 <div class="mini-value">
                     {recommendation["impact"]}
                 </div>
             </div>
 
             <div class="mini-metric">
-                <div class="mini-label">Confidence</div>
+                <div class="mini-label">
+                    Confidence
+                </div>
                 <div class="mini-value">
                     {recommendation["confidence"]}%
                 </div>
             </div>
+
         </div>
 
         <div class="section-label">
@@ -694,32 +771,29 @@ for recommendation in filtered_recommendations:
         </div>
 
         <div class="action-box">
+
             <div class="action-title">
                 Recommended action
             </div>
+
             <div class="action-text">
                 {recommended_action}
             </div>
+
         </div>
         """)
 
-        action_col, button_col = st.columns(
-            [5, 1.2],
+        button_space, button_col = st.columns(
+            [4.6, 1.4],
             vertical_alignment="center",
         )
-
-        with action_col:
-            st.caption(
-                f'{priority_label} priority · '
-                f'{recommendation["platform"]}'
-            )
 
         with button_col:
 
             if already_approved:
 
                 st.button(
-                    "✓ Approved",
+                    "✓ Added to tasks",
                     key=f"approved-{task_id}",
                     disabled=True,
                     use_container_width=True,
@@ -728,7 +802,7 @@ for recommendation in filtered_recommendations:
             else:
 
                 if st.button(
-                    "Add to tasks",
+                    "Approve & add to tasks",
                     key=f"approve-{task_id}",
                     type="primary",
                     use_container_width=True,
@@ -749,6 +823,7 @@ for recommendation in filtered_recommendations:
 
 
 if not filtered_recommendations:
+
     st.info(
         "No recommendations match this filter."
     )
